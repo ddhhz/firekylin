@@ -13,9 +13,18 @@ export default class extends think.controller.base {
     super.init(http);
     //home view path
     this.HOME_VIEW_PATH = `${think.ROOT_PATH}${think.sep}view${think.sep}home${think.sep}`;
-    if (think.GA_ID) {
-      let visitor = ua(think.GA_ID, http.req.headers["x-real-ip"] || http.req.connection.remoteAddress, {https: true});
-      visitor.pageview(http.url, http.hostname).send();
+    if (think.GA_ID && http.hostname.indexOf('127.0.0.1') === -1) {
+      let visitor = ua(think.GA_ID, {https: true, strictCidFormat: false});
+      visitor.pageview({
+        dp: http.req.url,
+        dh: http.hostname,
+        dr: http.req.headers['referrer'],
+        cid: http.req.headers["x-real-ip"] || http.req.connection.remoteAddress,
+        uip: http.req.headers["x-real-ip"] || http.req.connection.remoteAddress,
+        ua: http.req.headers['user-agent'],
+        ul: (http.req.headers['accept-language'] || '').match(/^([a-zA-Z-]*)/)[0],
+        z: new Date().getTime()
+      }).send();
     }
   }
   /**
