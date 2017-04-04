@@ -10,6 +10,7 @@ var instance = new thinkjs({
   RESOURCE_PATH: __dirname,
   UPLOAD_PATH: path.join(__dirname, 'static/upload'),
   UPLOAD_BASE_URL: '',
+  GA_ID: '',
   env: 'development'
 });
 

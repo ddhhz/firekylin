@@ -30,6 +30,7 @@
     "speakeasy": "2.0.0",
     "thinkjs": "^2.1.5",
     "to-markdown": "^3.0.3",
+    "universal-analytics": "^0.4.13",
     "upyun": "^2.0.4",
     "xml2js": "^0.4.16"
   },
