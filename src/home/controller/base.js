@@ -1,5 +1,6 @@
 'use strict';
 import fs from 'fs';
+import ua from 'universal-analytics';
 import pack from '../../../package.json';
 
 export default class extends think.controller.base {
@@ -12,6 +13,10 @@ export default class extends think.controller.base {
     super.init(http);
     //home view path
     this.HOME_VIEW_PATH = `${think.ROOT_PATH}${think.sep}view${think.sep}home${think.sep}`;
+    if (think.GA_ID) {
+      let visitor = ua(think.GA_ID, http.req.headers["x-real-ip"] || http.req.connection.remoteAddress, {https: true});
+      visitor.pageview(http.url, http.hostname).send();
+    }
   }
   /**
    * some base method in here
