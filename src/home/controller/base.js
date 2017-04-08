@@ -1,5 +1,5 @@
 'use strict';
-import fs from 'fs';
+
 import ua from 'universal-analytics';
 import pack from '../../../package.json';
 
@@ -9,7 +9,7 @@ export default class extends think.controller.base {
    * @param  {[type]} http [description]
    * @return {[type]}      [description]
    */
-  init(http){
+  init(http) {
     super.init(http);
     //home view path
     this.HOME_VIEW_PATH = `${think.ROOT_PATH}${think.sep}view${think.sep}home${think.sep}`;
@@ -19,8 +19,8 @@ export default class extends think.controller.base {
         dp: http.req.url,
         dh: http.hostname,
         dr: http.req.headers['referrer'],
-        cid: http.req.headers["x-real-ip"] || http.req.connection.remoteAddress,
-        uip: http.req.headers["x-real-ip"] || http.req.connection.remoteAddress,
+        cid: http.req.headers['x-real-ip'] || http.req.connection.remoteAddress,
+        uip: http.req.headers['x-real-ip'] || http.req.connection.remoteAddress,
         ua: http.req.headers['user-agent'],
         ul: (http.req.headers['accept-language'] || '').match(/^([a-zA-Z-]*)/)[0],
         z: new Date().getTime()
@@ -30,11 +30,11 @@ export default class extends think.controller.base {
   /**
    * some base method in here
    */
-  async __before(){
-    if(this.http.action === 'install'){
+  async __before() {
+    if(this.http.action === 'install') {
       return;
     }
-    if(!firekylin.isInstalled){
+    if(!firekylin.isInstalled) {
       return this.redirect('/index/install');
     }
 
@@ -63,7 +63,7 @@ export default class extends think.controller.base {
 
     //网站地址
     let siteUrl = this.options.site_url;
-    if(!siteUrl){
+    if(!siteUrl) {
       siteUrl = 'http://' + this.http.host;
     }
     this.assign('site_url', siteUrl);
@@ -72,14 +72,14 @@ export default class extends think.controller.base {
     let categories = await this.model('cate').getCateArchive();
     this.assign('categories', categories);
 
-    this.assign('currentYear', (new Date).getFullYear());
+    this.assign('currentYear', (new Date()).getFullYear());
   }
   /**
    * display view page
    * @param  {} name []
    * @return {}      []
    */
-  async displayView(name){
+  async displayView(name) {
     return this.display(this.THEME_VIEW_PATH + name + '.html');
   }
 }

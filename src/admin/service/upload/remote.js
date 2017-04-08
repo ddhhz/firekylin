@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
-import Base from './base';
 import request from 'request';
+import Base from './base';
 
 request.defaults({
   strictSSL: false,
@@ -16,26 +16,26 @@ export default class extends Base {
     let result = await getFileContent({
       url,
       headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) Chrome/47.0.2526.111 Safari/537.36"
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) Chrome/47.0.2526.111 Safari/537.36'
       },
       strictSSL: false,
       timeout: 1000,
       encoding: 'binary'
-    }).catch(() => { throw Error("UPLOAD_URL_ERROR"); });
+    }).catch(() => { throw Error('UPLOAD_URL_ERROR'); });
 
-    if(result.headers["content-type"].indexOf('image') === -1) {
+    if(result.headers['content-type'].indexOf('image') === -1) {
       throw Error('UPLOAD_TYPE_ERROR');
     }
 
     let destDir = this.formatNow();
     let basename = (name ? name : think.md5(result.body)) + path.extname(url);
-    let destPath = path.join( think.UPLOAD_PATH, destDir );
+    let destPath = path.join(think.UPLOAD_PATH, destDir);
 
-    if( !think.isDir(destPath) ) {
+    if(!think.isDir(destPath)) {
       think.mkdir(destPath);
     }
 
-    result = await putFileContent( path.join(destPath, basename), result.body, 'binary');
+    result = await putFileContent(path.join(destPath, basename), result.body, 'binary');
     return path.join(think.UPLOAD_PATH.replace(think.RESOURCE_PATH, ''), destDir, basename);
   }
 
