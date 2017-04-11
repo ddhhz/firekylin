@@ -13,9 +13,11 @@
     <article class="post detail">
         <div class="meta">
             <div class="date">{{think.datetime(post.create_time, 'MM月DD, YYYY')}}</div>
-            <div class="comment">
-                <a href="#comments">{{post.comment_num}} comments</a>
-            </div>
+            {% if post.comment_num %}
+              <div class="comment">
+                  <a href="#comments">{{post.comment_num}} comments</a>
+              </div>
+            {% endif %}
         </div>
         <h1 class="title">{{post.title}}</h1>
         <div class="entry-content">
