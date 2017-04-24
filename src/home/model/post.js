@@ -18,7 +18,7 @@ export default class extends think.model.relation {
     },
     user: {
       type: think.model.BELONG_TO,
-      field: 'id,name,display_name'
+      field: 'id,name,display_name,email'
     }
   };
 
@@ -46,6 +46,19 @@ export default class extends think.model.relation {
     }
     return where;
   }
+
+  /**
+   * 获取最近的10条数据 - 有缓存
+   *
+   * @return {Promise}
+   */
+  getLastPostList() {
+    return think.cache('lastPostList', async () => {
+      let postList = await this.getPostList();
+      return postList.data;
+    });
+  }
+
   /**
    * get post list
    * @param  {[type]} page  [description]
@@ -56,7 +69,7 @@ export default class extends think.model.relation {
     page = page | 0 || 1;
 
     let field = options.field || 'id,title,pathname,create_time,summary,comment_num';
-    if((await this.model('user').count()) > 1) { field += ',user_id'; }
+    if((await this.model('user').count()) > 0) { field += ',user_id'; }
 
     if(options.tag || options.cate) {
       let name = options.tag ? 'tag' : 'cate';
