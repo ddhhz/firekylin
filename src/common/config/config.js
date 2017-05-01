@@ -23,5 +23,8 @@ export default {
   resource_reg: /^(static\/|theme\/|[^\/]+\.(?!js|html|xml)\w+$)/,
   resource_headers: {
     'Cache-Control': 'public, max-age=31536000',
+  },
+  subdomain: {
+    admin: 'admin'
   }
 };
