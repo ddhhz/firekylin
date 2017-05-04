@@ -9,7 +9,7 @@ var instance = new thinkjs({
   ROOT_PATH: rootPath,
   RESOURCE_PATH: __dirname,
   UPLOAD_PATH: path.join(__dirname, 'static/upload'),
-  UPLOAD_BASE_URL: 'https://whe.oss-cn-hongkong.aliyuncs.com',
+  UPLOAD_BASE_URL: 'https://⚡.whe.me',
   GA_ID: 'UA-18952818-13',
   env: 'production'
 });
