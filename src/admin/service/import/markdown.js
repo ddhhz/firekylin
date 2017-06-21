@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import {execSync} from 'child_process';
-import Post from '../../controller/api/post';
 import Base from './base';
 
 const PATH = path.join(think.RUNTIME_PATH, 'importMarkdownFileToFirekylin');
@@ -45,7 +44,7 @@ export default class extends Base {
         //获取用户
         const user = await this._think.session('userInfo');
 
-        const post = {
+        let post = {
           title: item.title,
           pathname: item.pathname,
           markdown_content: item.markdown_content,
@@ -58,7 +57,7 @@ export default class extends Base {
           is_public: 1,
           type: 0
         };
-        await Post.prototype.getContentAndSummary(post);
+        post = await think.model('post', null, 'admin').getContentAndSummary(post);
         await this.postModelInstance.addPost(post);
       } catch(e) {
         console.log(e);  // eslint-disable-line no-console
