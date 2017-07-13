@@ -7,8 +7,7 @@ import BreadCrumb from 'admin/component/breadcrumb';
 
 module.exports = class extends Base {
   state = {
-    exportType: 'markdown',
-    href: '/admin/api/file/get?type=markdown'
+    exportType: 'markdown'
   };
   render() {
     let exportType = this.state.exportType;
@@ -19,13 +18,13 @@ module.exports = class extends Base {
         validate={(value) => {
           exportType = value;
           this.setState({
-            exportType: exportType,
-            href: '/admin/api/file/get?type=' + value
+            exportType: exportType
            });
           return true;
         }}
       >
         <Radio value='markdown' label='Markdown' />
+        <Radio value='hexo' label='Hexo / Jekyll' />
         <Radio value='wordpress' label='WordPress eXtended RSS' />
       </RadioGroup>
     );
@@ -37,7 +36,7 @@ module.exports = class extends Base {
             <label> 请选择导出的文件类型 </label>
             { radio }
             <Button
-              href={this.state.href}
+              href={'/admin/api/file/get?type=' + this.state.exportType}
               bsStyle='primary'
             >
               下载
