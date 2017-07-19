@@ -33,9 +33,9 @@ export default class extends think.logic.base {
     }
 
     let rules = {
-      preview: 'boolean',
-      previewData: 'requiredIf:preview,true'
+      preview: 'boolean|get'
     };
+
     if(!this.validate(rules)) {
       think.statusAction(400, this.http);
     }
