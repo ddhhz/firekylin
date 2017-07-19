@@ -143,7 +143,7 @@ module.exports = class extends Base {
                 {this.state.posts.map(post =>
                   <li key={post.id}>
                     <label>{moment(new Date(post.create_time)).format('MM.DD')}：</label>
-                    <a href={`/post/${post.pathname}`} target="_blank">{post.title}</a>
+                    <a href={`/post/${post.pathname}.html`} target="_blank">{post.title}</a>
                   </li>
                 )}
               </ul>
