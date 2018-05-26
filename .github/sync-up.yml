@@ -1,4 +1,5 @@
 rules:
-  - branch: master
+  master:
     upstream: firekylin/master
-
+    autoMerge: true
+    frequency: 5
