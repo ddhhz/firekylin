@@ -1,0 +1,4 @@
+rules:
+  - branch: master
+    upstream: firekylin/master
+
