@@ -1,0 +1,9 @@
+version: "1"
+rules:
+  - base: master
+    upstream: firekylin:master
+    autoMerge: true
+  - base: latest
+    upstream: firekylin:master
+    assignees:
+      - wei
