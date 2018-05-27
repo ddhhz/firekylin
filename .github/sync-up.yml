@@ -1,0 +1,8 @@
+version: "1"
+rules:
+  master:
+    upstream: firekylin:master
+    autoMerge: true
+    autoMergeHardReset: true
+  latest:
+    upstream: master
