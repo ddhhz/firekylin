@@ -1,7 +1,7 @@
 {
   "name": "firekylin",
   "description": "A Simple & Fast Node Bloging Platform Base On ThinkJS 3.x & ReactJS & ES2015+",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "author": "lizheming <i@imnerd.org>",
   "scripts": {
     "start": "node development.js",
@@ -12,14 +12,18 @@
     "lint": "eslint ./src ./*.js ./www/*.js ./www/static/src ./www/theme/firekylin --ignore-path .gitignore --cache -f table --ext .js,.jsx || true",
     "lint-fix": "eslint ./src ./*.js ./www/*.js ./www/static/src ./www/theme/firekylin --ignore-path .gitignore -f table --ext .js,.jsx --fix || true",
     "lint-break-on-errors": "echo '\n[INFO] Running ESLint...\n[INFO] (Autofix with `npm run lint-fix`)' && eslint ./src ./*.js ./www/*.js ./www/static/src ./www/theme/firekylin --ignore-path .gitignore -f table --ext .js,.jsx",
-    "check-extraneous-pkgs": "npm list --depth=0 && echo '[SUCCESS] No extraneous packages.' || (echo '[INFO] Pruning extraneous packages...\n' && npm prune)"
+    "check-extraneous-pkgs": "npm list --depth=0 && echo '[SUCCESS] No extraneous packages.' || (echo '[INFO] Pruning extraneous packages...\n' && npm prune)",
+    "cron:rss": "npm start -- \"admin/cron/rss\"",
+    "cron:comment": "npm start -- \"crontab/sync_comment\""
   },
   "pre-commit": [
     "lint-break-on-errors"
   ],
   "dependencies": {
     "ali-oss": "^4.14.2",
+    "aws-sdk": "^2.263.1",
     "co": "^4.6.0",
+    "feedparser": "^2.2.9",
     "form-data": "^2.3.1",
     "fs-extra": "^5.0.0",
     "highlight.js": "^9.12.0",
@@ -37,6 +41,7 @@
     "push-to-firekylin": "^0.2.3",
     "qiniu": "^7.1.2",
     "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
     "semver": "^5.5.0",
     "speakeasy": "^2.0.0",
     "think-cache": "^1.0.0",
