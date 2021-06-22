@@ -224,7 +224,11 @@ class MarkDownEditor extends React.Component<MdEditorProps, any> {
     const start = (this._cleanSelect() as number);
     if (this.state.imageTabKey === '0') {
       const fileName = this.fileInfo.file.name;
-      this._preInputText(`![${fileName}](${location.origin + this.imagePath})`, 2, fileName.length + 2, start);
+      let fileUrl = this.imagePath;
+      if(!/^(https?:)?\/\/.+/i.test(this.imagePath)) {
+        fileUrl = location.origin + fileUrl;
+      }
+      this._preInputText(`![${fileName}](${fileUrl})`, 2, fileName.length + 2, start);
       this.imageModalClose();
     } else {
       if (this.state.fileLink) {
@@ -241,7 +245,7 @@ class MarkDownEditor extends React.Component<MdEditorProps, any> {
     http.upload(data)
       .then(
         res => {
-          const reg = /^(https?:)?\/\/.+/;
+          const reg = /^(https?:)?\/\/.+/i;
           if (!reg.test(res.data)) {
             res.data = location.origin + res.data;
           }
@@ -311,7 +315,7 @@ class MarkDownEditor extends React.Component<MdEditorProps, any> {
           <div className={previewClass} ref={div => this.preview = div} dangerouslySetInnerHTML={{ __html: this.state.result }}/>
           <div className={classnames({hide: this.state.mode !== 'split'}, 'md-spliter')} />
         </div>
-        <a ref={a => this.resizebar = a} href="javascript:void(0);" className="editor__resize">调整高度</a>
+        <a ref={a => this.resizebar = a} href="###" className="editor__resize">调整高度</a>
         <EditorLinkModal
           visible={this.state.visible.link} 
           onCancel={() => {this.setState({visible: Object.assign({}, this.state.visible, {link: false})}); (this.linkRef.props.form as WrappedFormUtils).resetFields(); }}

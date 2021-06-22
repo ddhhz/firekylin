@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://github.com/firekylin/Firekylin">
-    <!-- <img width="200" heigth="200" src="https://s1.ssl.qhres.com/static/0c8555d630012930.svg"> -->
-    <img width="250" height="262" src="https://s3.ssl.qhres.com/static/70ad177f02b6e7ae.svg">
+    <!-- <img width="200" heigth="200" src="https://s1.ssl.qhres2.com/static/0c8555d630012930.svg"> -->
+    <img width="250" height="262" src="https://s3.ssl.qhres2.com/static/70ad177f02b6e7ae.svg">
   </a>  
 
   <h1>Firekylin</h1>
@@ -44,6 +44,7 @@
 - [添加和管理推送](https://github.com/firekylin/firekylin/wiki/%E6%8E%A8%E9%80%81)
 - [调整网站外观](https://github.com/firekylin/firekylin/wiki/%E4%B8%BB%E9%A2%98%E5%A4%96%E8%A7%82)
 - [系统设置](https://github.com/firekylin/firekylin/wiki/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE)
+- [如何优化博客主题](https://welefen.com/post/how-to-optimize-firekylin-theme.html)
 
 ## 常见问题
 
@@ -51,21 +52,14 @@
 
 ## 用户列表
 
-[奇舞团博客](http://www.75team.com/) / 
-[奇虎360-addops](https://opsdev.cn) / 
-[十年踪迹的博客](http://h5jun.com/) / 
-[光宇的博客](http://gyblog.cn/) / 
-[welefen的博客](http://welefen.com/) / 
-[Aztack's blog](http://aztack.wang/) / 
-[且等风来](https://blog.cosli.top/) / 
-[为之漫笔](http://lisongfeng.cn) / 
-[小撸的博客](http://www.60sky.com/) / 
-[花花的博客](https://imwineki.cn/) / 
-[刘涛的个人小站](https://imliutao.com) / 
-[大官人的博客](https://www.daguanren.cc/) / 
-[小路口](https://imjiaolong.cn/)
+[奇舞团博客](https://75.team/) / [奇虎360-addops](https://blog.cloud.360.cn) / [十年踪迹的博客](http://h5jun.com/) / [welefen的博客](http://welefen.com/) / [大官人的博客](https://www.daguanren.cc/) /
+[魔术师的帽子](https://blog.magichc7.com/)
 
 如果你的博客也是用 FireKylin 构建的，请到 https://github.com/firekylin/firekylin/issues/34 提交网址。
+
+## 主题分享
+
+- https://github.com/matinjugou/firekylin-theme
 
 ## 开发者文档
 

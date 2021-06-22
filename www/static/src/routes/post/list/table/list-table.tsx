@@ -5,20 +5,25 @@ import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'antd';
 import { PostListProps } from '../list.model';
+import { TABLE_DELAY } from '../../../../config';
 
 const confirm = Modal.confirm;
 
 @inject('postStore')
 @observer
 class PostListTable extends React.Component<PostListProps, {}> {
-    delete(id: number) {
+    delete(id: number, force: boolean = false) {
         confirm({
             title: '提示',
-            content: '确定删除吗?',
+            content: `确定${force ? '彻底' : ''}删除吗?`,
             onOk: () => {
-                this.props.postStore.deletePostById(id);
+                this.props.postStore.deletePostById(id, force);
             }
         });
+    }
+
+    cancel(id: number) {
+        this.props.postStore.cancelPostById(id);
     }
 
     pass(id: number) {
@@ -38,6 +43,14 @@ class PostListTable extends React.Component<PostListProps, {}> {
                     <Button onClick={() => this.delete(post.id)} style={{ marginLeft: 8 }} type="danger" icon="delete" size="small">删除</Button>
                 </>
             );
+        } else if(status === '4') {
+            return (
+                <>
+
+                    <Button onClick={() => this.cancel(post.id)} type="primary" icon="edit" size="small">撤销</Button>
+                    <Button onClick={() => this.delete(post.id, true)} style={{ marginLeft: 8 }} type="danger" icon="delete" size="small">删除</Button>
+                </>
+            )
         } else {
             return (
                 <>
@@ -54,7 +67,7 @@ class PostListTable extends React.Component<PostListProps, {}> {
         return (
             <Table
                 dataSource={postList}
-                loading={loading}
+                loading={{spinning: loading, delay: TABLE_DELAY}}
                 pagination={pagination}
                 onChange={e => {
                     this.props.postStore.setPlReqParams({

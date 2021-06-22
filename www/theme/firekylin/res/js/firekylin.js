@@ -87,6 +87,10 @@
         loadChangyanComment();
       } else if (dataType === 'gitalk') {
         loadGitalkComment();
+      } else if (dataType === 'waline') {
+        loadWalineComment();
+      } else if (dataType === 'valine') {
+        loadValineComment();
       }
     }
 
@@ -200,6 +204,40 @@
     s.onload = function () {
       var gitalk = new Gitalk(gitalkConfig);
       gitalk.render('gitalk-container');
+    };
+    (doc.head || doc.body).appendChild(s);
+  }
+
+  var loadWalineComment = function () {
+    var waline_thread = getById('waline-container');
+    var walineConfig = waline_thread.getAttribute('data-name');
+    if(walineConfig) {
+      walineConfig = JSON.parse(walineConfig);
+    }
+    walineConfig.el = '#waline-container';
+    walineConfig.path = location.pathname;
+
+    var s = document.createElement('script');
+    s.src = '//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js';
+    s.onload = function() {
+      new Waline(walineConfig);
+    };
+    (doc.head || doc.body).appendChild(s);
+  }
+
+  var loadValineComment = function() {
+    var valine_thread = getById('valine-container');
+    var valineConfig = valine_thread.getAttribute('data-name');
+    if(valineConfig) {
+      valineConfig = JSON.parse(valineConfig);
+    }
+    valineConfig.el = '#valine-container';
+    valineConfig.path = location.pathname;
+
+    var s = document.createElement('script');
+    s.src = '//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js';
+    s.onload = function() {
+      new Valine(valineConfig);
     };
     (doc.head || doc.body).appendChild(s);
   }
@@ -409,8 +447,7 @@
    */
   hljs.init = function () {
     [].slice.call(hljs.$code).forEach(function (elem, i) {
-      // 输出行号, -1是为了让最后一个换行忽略
-      var lines = elem.innerHTML.split(/\n/).slice(0, -1);
+      var lines = elem.innerHTML.trim().split(/[\r\n]+/);
       var html = lines.map(function (item, index) {
         return '<li><span class="line-num" data-line="' + (index + 1) + '"></span>' + item + '</li>';
       }).join('');

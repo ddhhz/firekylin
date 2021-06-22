@@ -121,7 +121,7 @@ class DashBoard extends React.Component<DashBoardProps, any> {
                     <p className="bg-info update-message">
                     Firekylin <a
                     href={`https://github.com/firekylin/firekylin/blob/master/CHANGELOG.md#${(versions.needUpdate as string).replace(/\./g, '')}`}
-                    >{versions.needUpdate}</a> 已经发布，请立即 <a href="http://firekylin.org/release/latest.tar.gz"
+                    >{versions.needUpdate}</a> 已经发布，请立即 <a href="http://firekylin.org/release/v1/latest.tar.gz"
                     >下载更新</a> 或者使用 <a href="javascript:void(0)" onClick={() => this.renderUpdateConfirm()}
                     >在线更新</a>！
                     </p>
@@ -178,7 +178,7 @@ class DashBoard extends React.Component<DashBoardProps, any> {
                                 </li>
                                 <li>
                                     <label>团队博客：</label>
-                                    <a href="https://www.75team.com/">http://www.75team.com/</a>
+                                    <a href="https://75.team">https://75.team</a>
                                 </li>
                                 <li>
                                     <label>开发成员：</label>
